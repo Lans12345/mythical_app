@@ -38,6 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   video_player:
   get_storage:
+  flutter_spinkit:
 
 dev_dependencies:
   flutter_test:

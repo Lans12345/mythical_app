@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mythical_app/screens/landing_screen.dart';
+import 'package:mythical_app/screens/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LandingScreen(),
+      home: SplashScreen(),
     );
   }
 }
