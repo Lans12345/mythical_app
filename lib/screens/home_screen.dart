@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mythical_app/screens/video_player_screen.dart';
 import 'package:mythical_app/utils/colors.dart';
 import 'package:mythical_app/widgets/text_widget.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late String filter = '';
+
+  final filterController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +41,26 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white),
                       child: TextFormField(
+                        controller: filterController,
+                        onChanged: ((value) {
+                          filter = value;
+                          setState(() {});
+                        }),
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.search,
                               color: Colors.grey,
                             ),
+                            suffixIcon: filter != ''
+                                ? IconButton(
+                                    onPressed: (() {
+                                      setState(() {
+                                        filterController.clear();
+                                        filter = '';
+                                      });
+                                    }),
+                                    icon: Icon(Icons.close))
+                                : SizedBox(),
                             border: InputBorder.none,
                             hintText: 'Search',
                             hintStyle: TextStyle(
@@ -60,63 +83,201 @@ class HomeScreen extends StatelessWidget {
           //       image: DecorationImage(
           //           image: AssetImage('assets/images/background1.png'))),
           // ),
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/images/background1.png'))),
-              child: ListView.builder(itemBuilder: ((context, index) {
-                return Padding(
-                  padding: const EdgeInsets.fromLTRB(30, 2.5, 30, 2.5),
-                  child: GestureDetector(
-                    onTap: (() {}),
-                    child: Card(
-                      elevation: 20,
-                      child: Container(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: Row(
-                            children: [
-                              Image.asset(
-                                'assets/images/sample.png',
-                                height: 80,
+          filter == ''
+              ? Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image:
+                                AssetImage('assets/images/background1.png'))),
+                    child: ListView.builder(itemBuilder: ((context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(30, 2.5, 30, 2.5),
+                        child: GestureDetector(
+                          onTap: (() {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => VideoPlayerScreen()));
+                          }),
+                          child: Card(
+                            elevation: 20,
+                            child: Container(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/sample.png',
+                                      height: 80,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        TextRegular(
+                                            text: 'Balbal (Bal-Bal)',
+                                            fontSize: 16,
+                                            color: Colors.black),
+                                        SizedBox(
+                                          width: 150,
+                                          child: TextRegular(
+                                              text:
+                                                  'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  TextRegular(
-                                      text: 'Balbal (Bal-Bal)',
-                                      fontSize: 16,
-                                      color: Colors.black),
-                                  SizedBox(
-                                    width: 150,
-                                    child: TextRegular(
-                                        text:
-                                            'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
-                                        fontSize: 12,
-                                        color: Colors.black),
-                                  ),
-                                ],
-                              ),
-                            ],
+                              height: 120,
+                              width: double.infinity,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                        height: 120,
-                        width: double.infinity,
-                        color: Colors.white,
-                      ),
+                      );
+                    })),
+                  ),
+                )
+              : Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image:
+                                AssetImage('assets/images/background1.png'))),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(30, 2.5, 30, 2.5),
+                          child: Card(
+                            elevation: 20,
+                            child: Container(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, right: 10),
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/sample.png',
+                                      height: 80,
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        TextRegular(
+                                            text: 'Balbal (Bal-Bal)',
+                                            fontSize: 16,
+                                            color: Colors.black),
+                                        SizedBox(
+                                          width: 150,
+                                          child: TextRegular(
+                                              text:
+                                                  'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
+                                              fontSize: 12,
+                                              color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              height: 120,
+                              width: double.infinity,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        TextBold(
+                            text: 'Suggested creatures',
+                            fontSize: 12,
+                            color: Colors.black),
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage(
+                                        'assets/images/background1.png'))),
+                            child: ListView.builder(
+                                itemBuilder: ((context, index) {
+                              return Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(30, 2.5, 30, 2.5),
+                                child: GestureDetector(
+                                  onTap: (() {}),
+                                  child: Card(
+                                    elevation: 20,
+                                    child: Container(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 10, right: 10),
+                                        child: Row(
+                                          children: [
+                                            Image.asset(
+                                              'assets/images/sample.png',
+                                              height: 80,
+                                            ),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                TextRegular(
+                                                    text: 'Balbal (Bal-Bal)',
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                                SizedBox(
+                                                  width: 150,
+                                                  child: TextRegular(
+                                                      text:
+                                                          'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
+                                                      fontSize: 12,
+                                                      color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      height: 120,
+                                      width: double.infinity,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            })),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                );
-              })),
-            ),
-          ),
+                )
         ],
       ),
     );
