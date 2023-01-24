@@ -17,6 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final box = GetStorage();
 
+  List<Map<String, dynamic>> newData = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         controller: filterController,
                         onChanged: ((value) {
                           filter = value;
-                          setState(() {});
+                          setState(() {
+                            newData = creaturesData
+                                .where((element) => element['name']!
+                                    .toLowerCase()
+                                    .contains(value.toLowerCase()))
+                                .toList();
+                          });
                         }),
                         decoration: InputDecoration(
                             prefixIcon: const Icon(
@@ -172,58 +180,80 @@ class _HomeScreenState extends State<HomeScreen> {
                                 AssetImage('assets/images/background1.png'))),
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(30, 2.5, 30, 2.5),
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          VideoPlayerScreen()));
-                            },
-                            child: Card(
-                              elevation: 20,
-                              child: Container(
-                                height: 120,
-                                width: double.infinity,
-                                color: Colors.white,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 10),
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/sample.png',
-                                        height: 80,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          TextRegular(
-                                              text: 'Balbal (Bal-Bal)',
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                          SizedBox(
-                                            width: 120,
-                                            child: TextRegular(
-                                                text:
-                                                    'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
-                                                fontSize: 12,
-                                                color: Colors.black),
+                        Expanded(
+                          child: SizedBox(
+                            child: ListView.builder(
+                                itemCount: newData.length,
+                                itemBuilder: ((context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        30, 2.5, 30, 2.5),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        box.write('data', newData[index]);
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    VideoPlayerScreen()));
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    VideoPlayerScreen()));
+                                      },
+                                      child: Card(
+                                        elevation: 20,
+                                        child: Container(
+                                          height: 120,
+                                          width: double.infinity,
+                                          color: Colors.white,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10, right: 10),
+                                            child: Row(
+                                              children: [
+                                                Image.asset(
+                                                  'assets/images/sample.png',
+                                                  height: 80,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    TextRegular(
+                                                        text: newData[index]
+                                                            ['name'],
+                                                        fontSize: 16,
+                                                        color: Colors.black),
+                                                    SizedBox(
+                                                      width: 120,
+                                                      child: Text(
+                                                        newData[index]
+                                                            ['description']!,
+                                                        maxLines: 5,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: const TextStyle(
+                                                            fontSize: 12,
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'QRegular'),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                        ],
+                                        ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
+                                    ),
+                                  );
+                                })),
                           ),
                         ),
                         const SizedBox(
