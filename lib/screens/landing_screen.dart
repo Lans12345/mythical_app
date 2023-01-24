@@ -5,13 +5,17 @@ import 'package:mythical_app/widgets/button_widget.dart';
 import 'package:mythical_app/widgets/text_widget.dart';
 
 class LandingScreen extends StatelessWidget {
-  const LandingScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         width: double.infinity,
+        decoration: BoxDecoration(
+            color: primary,
+            image: const DecorationImage(
+                opacity: 300,
+                fit: BoxFit.cover,
+                image: AssetImage('assets/images/background.png'))),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(30, 50, 30, 50),
           child: Column(
@@ -46,12 +50,6 @@ class LandingScreen extends StatelessWidget {
             ],
           ),
         ),
-        decoration: BoxDecoration(
-            color: primary,
-            image: DecorationImage(
-                opacity: 300,
-                fit: BoxFit.cover,
-                image: AssetImage('assets/images/background.png'))),
       ),
     );
   }

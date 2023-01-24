@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mythical_app/screens/video_player_screen.dart';
+import 'package:mythical_app/services/data/creatures_data.dart';
 import 'package:mythical_app/utils/colors.dart';
 import 'package:mythical_app/widgets/text_widget.dart';
 
@@ -13,6 +15,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final filterController = TextEditingController();
 
+  final box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Container(
             width: double.infinity,
+            height: 180,
+            color: primary,
             child: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
@@ -33,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white),
                     TextBold(
                         text: 'creatures', fontSize: 28, color: Colors.white),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Container(
@@ -47,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           setState(() {});
                         }),
                         decoration: InputDecoration(
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.search,
                               color: Colors.grey,
                             ),
@@ -59,11 +65,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                         filter = '';
                                       });
                                     }),
-                                    icon: Icon(Icons.close))
-                                : SizedBox(),
+                                    icon: const Icon(Icons.close))
+                                : const SizedBox(),
                             border: InputBorder.none,
                             hintText: 'Search',
-                            hintStyle: TextStyle(
+                            hintStyle: const TextStyle(
                               color: Colors.grey,
                               fontFamily: 'QRegular',
                             )),
@@ -73,8 +79,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            height: 180,
-            color: primary,
           ),
           // Container(
           //   height: 500,
@@ -87,71 +91,81 @@ class _HomeScreenState extends State<HomeScreen> {
               ? Expanded(
                   child: Container(
                     width: double.infinity,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             fit: BoxFit.cover,
                             image:
                                 AssetImage('assets/images/background1.png'))),
-                    child: ListView.builder(itemBuilder: ((context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(30, 2.5, 30, 2.5),
-                        child: GestureDetector(
-                          onTap: (() {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                    builder: (context) => VideoPlayerScreen()));
-                          }),
-                          child: Card(
-                            elevation: 20,
-                            child: Container(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/sample.png',
-                                      height: 80,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                    child: ListView.builder(
+                        itemCount: creaturesData.length,
+                        itemBuilder: ((context, index) {
+                          return Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(30, 2.5, 30, 2.5),
+                            child: GestureDetector(
+                              onTap: (() {
+                                box.write('data', creaturesData[index]);
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            VideoPlayerScreen()));
+                              }),
+                              child: Card(
+                                elevation: 20,
+                                child: Container(
+                                  width: double.infinity,
+                                  color: Colors.white,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10, bottom: 5, top: 5),
+                                    child: Row(
                                       children: [
-                                        TextRegular(
-                                            text: 'Balbal (Bal-Bal)',
-                                            fontSize: 16,
-                                            color: Colors.black),
-                                        SizedBox(
-                                          width: 150,
-                                          child: TextRegular(
-                                              text:
-                                                  'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
-                                              fontSize: 12,
-                                              color: Colors.black),
+                                        Image.asset(
+                                          'assets/images/sample.png',
+                                          height: 80,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            TextRegular(
+                                                text: creaturesData[index]
+                                                    ['name']!,
+                                                fontSize: 16,
+                                                color: Colors.black),
+                                            SizedBox(
+                                              width: 125,
+                                              child: Text(
+                                                creaturesData[index]
+                                                    ['description']!,
+                                                maxLines: 5,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: const TextStyle(
+                                                    fontSize: 12,
+                                                    color: Colors.black,
+                                                    fontFamily: 'QRegular'),
+                                              ),
+                                            )
+                                          ],
                                         ),
                                       ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
-                              height: 120,
-                              width: double.infinity,
-                              color: Colors.white,
                             ),
-                          ),
-                        ),
-                      );
-                    })),
+                          );
+                        })),
                   ),
                 )
               : Expanded(
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                         image: DecorationImage(
                             fit: BoxFit.cover,
                             image:
@@ -160,51 +174,59 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(30, 2.5, 30, 2.5),
-                          child: Card(
-                            elevation: 20,
-                            child: Container(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, right: 10),
-                                child: Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/sample.png',
-                                      height: 80,
-                                    ),
-                                    SizedBox(
-                                      width: 10,
-                                    ),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        TextRegular(
-                                            text: 'Balbal (Bal-Bal)',
-                                            fontSize: 16,
-                                            color: Colors.black),
-                                        SizedBox(
-                                          width: 150,
-                                          child: TextRegular(
-                                              text:
-                                                  'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
-                                              fontSize: 12,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          VideoPlayerScreen()));
+                            },
+                            child: Card(
+                              elevation: 20,
+                              child: Container(
+                                height: 120,
+                                width: double.infinity,
+                                color: Colors.white,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 10),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/sample.png',
+                                        height: 80,
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          TextRegular(
+                                              text: 'Balbal (Bal-Bal)',
+                                              fontSize: 16,
                                               color: Colors.black),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                          SizedBox(
+                                            width: 120,
+                                            child: TextRegular(
+                                                text:
+                                                    'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
+                                                fontSize: 12,
+                                                color: Colors.black),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                              height: 120,
-                              width: double.infinity,
-                              color: Colors.white,
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         TextBold(
@@ -214,66 +236,84 @@ class _HomeScreenState extends State<HomeScreen> {
                         Expanded(
                           child: Container(
                             width: double.infinity,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 image: DecorationImage(
                                     fit: BoxFit.cover,
                                     image: AssetImage(
                                         'assets/images/background1.png'))),
                             child: ListView.builder(
+                                itemCount: creaturesData.length,
                                 itemBuilder: ((context, index) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(30, 2.5, 30, 2.5),
-                                child: GestureDetector(
-                                  onTap: (() {}),
-                                  child: Card(
-                                    elevation: 20,
-                                    child: Container(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 10),
-                                        child: Row(
-                                          children: [
-                                            Image.asset(
-                                              'assets/images/sample.png',
-                                              height: 80,
-                                            ),
-                                            SizedBox(
-                                              width: 10,
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                  return Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        30, 2.5, 30, 2.5),
+                                    child: GestureDetector(
+                                      onTap: (() {
+                                        box.write('data', creaturesData[index]);
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    VideoPlayerScreen()));
+                                      }),
+                                      child: Card(
+                                        elevation: 20,
+                                        child: Container(
+                                          width: double.infinity,
+                                          color: Colors.white,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10,
+                                                right: 10,
+                                                bottom: 5,
+                                                top: 5),
+                                            child: Row(
                                               children: [
-                                                TextRegular(
-                                                    text: 'Balbal (Bal-Bal)',
-                                                    fontSize: 16,
-                                                    color: Colors.black),
-                                                SizedBox(
-                                                  width: 150,
-                                                  child: TextRegular(
-                                                      text:
-                                                          'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
-                                                      fontSize: 12,
-                                                      color: Colors.black),
+                                                Image.asset(
+                                                  'assets/images/sample.png',
+                                                  height: 80,
+                                                ),
+                                                const SizedBox(
+                                                  width: 10,
+                                                ),
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    TextRegular(
+                                                        text:
+                                                            creaturesData[index]
+                                                                ['name']!,
+                                                        fontSize: 16,
+                                                        color: Colors.black),
+                                                    SizedBox(
+                                                      width: 125,
+                                                      child: Text(
+                                                        creaturesData[index]
+                                                            ['description']!,
+                                                        maxLines: 5,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: const TextStyle(
+                                                            fontSize: 12,
+                                                            color: Colors.black,
+                                                            fontFamily:
+                                                                'QRegular'),
+                                                      ),
+                                                    )
+                                                  ],
                                                 ),
                                               ],
                                             ),
-                                          ],
+                                          ),
                                         ),
                                       ),
-                                      height: 120,
-                                      width: double.infinity,
-                                      color: Colors.white,
                                     ),
-                                  ),
-                                ),
-                              );
-                            })),
+                                  );
+                                })),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ),

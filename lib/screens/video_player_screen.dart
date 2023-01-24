@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:mythical_app/screens/home_screen.dart';
+import 'package:mythical_app/services/data/creatures_data.dart';
 import 'package:mythical_app/utils/colors.dart';
 import 'package:mythical_app/widgets/text_widget.dart';
-
+import 'dart:math';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   @override
   _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
 }
+
+var random = Random();
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   late VideoPlayerController _controller;
@@ -22,11 +26,15 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
       });
   }
 
+  final box = GetStorage();
+
+  var newList = List.from(creaturesData)..shuffle(random);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.cover,
                 image: AssetImage('assets/images/background1.png'))),
@@ -46,8 +54,8 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                       color: primary,
                     )),
               ),
-              SizedBox(
-                height: 100,
+              const SizedBox(
+                height: 50,
               ),
               Center(
                 child: _controller.value.isInitialized
@@ -61,14 +69,17 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                               child: VideoPlayer(_controller),
                             ),
                             Container(
+                              width: double.infinity,
+                              decoration:
+                                  const BoxDecoration(color: Colors.white),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   TextRegular(
-                                      text: 'Balbal (Bal-Bal)',
+                                      text: box.read('data')['name'],
                                       fontSize: 18,
                                       color: Colors.black),
                                   Padding(
@@ -76,23 +87,34 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                                     child: SizedBox(
                                       width: 300,
                                       child: TextRegular(
-                                          text:
-                                              'is an undead creature that steals corpses, whether from a funeral or grave, and feeds on them.',
+                                          text: box.read('data')['description'],
                                           fontSize: 14,
+                                          color: Colors.grey),
+                                    ),
+                                  ),
+                                  TextRegular(
+                                      text: 'Weakness',
+                                      fontSize: 14,
+                                      color: Colors.black),
+                                  Center(
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 20),
+                                      child: TextRegular(
+                                          text: box.read('data')['weakness'],
+                                          fontSize: 12,
                                           color: Colors.grey),
                                     ),
                                   ),
                                 ],
                               ),
-                              width: double.infinity,
-                              decoration: BoxDecoration(color: Colors.white),
                             ),
                           ],
                         ),
                       )
                     : Container(),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Center(
@@ -101,31 +123,36 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                     fontSize: 14,
                     color: Colors.black),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  MaterialButton(
-                      child: TextRegular(
-                          text: 'Sigbin', fontSize: 12, color: Colors.black),
-                      height: 30,
-                      color: Colors.white,
-                      onPressed: (() {})),
-                  MaterialButton(
-                      child: TextRegular(
-                          text: 'Kapre', fontSize: 12, color: Colors.black),
-                      height: 30,
-                      color: Colors.white,
-                      onPressed: (() {})),
-                  MaterialButton(
-                      child: TextRegular(
-                          text: 'Tikbalang', fontSize: 12, color: Colors.black),
-                      height: 30,
-                      color: Colors.white,
-                      onPressed: (() {})),
-                ],
+              Center(
+                child: SizedBox(
+                  height: 50,
+                  width: 300,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          child: MaterialButton(
+                              height: 20,
+                              color: Colors.white,
+                              onPressed: (() {
+                                box.write('data', newList[index]);
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            VideoPlayerScreen()));
+                              }),
+                              child: TextRegular(
+                                  text: newList[index]['name'],
+                                  fontSize: 12,
+                                  color: Colors.black)),
+                        );
+                      }),
+                ),
               ),
             ],
           ),
