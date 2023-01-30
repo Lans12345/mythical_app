@@ -75,4 +75,40 @@ var creaturesData = [
         'The duwende is a playful hobgoblin who shows himself to children, while the nuno is a goblin easily angered that will do harm to those who damage or disturb his mound, and will seek retribution, for example by causing the foot of someone who kicked his mound to become swollen.',
     'weakness': 'Salt, garlic, rosary, loud noises',
   },
+  {
+    'name': 'Batibat',
+    'description':
+        'In the Philippine Mythology, the Batibat or Bangungot is a vengeful demon found in Ilocano folklore. These demons were blamed as the cause of the fatal nocturnal disease called bangungot.',
+    'weakness': 'Prayers',
+  },
+  {
+    'name': 'Bungisngis',
+    'description':
+        'Bungisngis is a one-eyed giant in Philippine folklore. This giant, purported to dwell in Meluz, Orion, Bataan, and Cebu are described as always laughing. The literal meaning of the name Bungingis is derived from the Cebuano word ngisi which means "to giggle". The Bungisngis is humanoid giant with large teeth that are always showing.',
+    'weakness': 'Stupid and gullible, easy to be tricked or manipulated. ',
+  },
+  {
+    'name': 'Bagat',
+    'description':
+        'The bagat are shapeshifters in the common nomenclature, changing between monstrous animals of huge proportions (mostly those of the domesticated variety) or other frightful apparitions such as floating candles or coffins.',
+    'weakness': 'Rosary, garlic, salt, sunlight',
+  },
+  {
+    'name': 'Minokawa',
+    'description':
+        'is a giant, dragon-like bird in Philippine mythology. Early people believed this creature is so big that it can swallow (or cover) the sun to explain the occurrence of eclipses. It is even described as a giant bird named Minokawa that lives in outer space which can devour the sun and the moon and would try to do the same with the earth.',
+    'weakness': 'Undefined',
+  },
+  {
+    'name': 'Sarimanok',
+    'description':
+        'The Sarimanok is a legendary bird of the Maranao people who originate from Mindanao, a major island in the Philippines. It comes from the words “sari” and “manok.” “Sari” means cloth or garment, which is generally of assorted colors. Manòk, which makes up part of its name, is a Philippine word for chicken.The Sarimanok is derived from a totem bird of the Maranao people, called Itotoro.',
+    'weakness': 'Undefined',
+  },
+  {
+    'name': 'Naga',
+    'description':
+        'Naga is a category of serpentine beings that play an important role in Hinduism, Buddhism, and Southeast Asian mythology and folklore. Naga usually combines human features with the features of snakes, most often the king cobra, and they are generally associated with the water.',
+    'weakness': 'Undefined',
+  },
 ];
