@@ -21,8 +21,15 @@ class LandingScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 100,
+              const SizedBox(
+                height: 20,
+              ),
+              TextBold(
+                  text: 'AKLAT:\nFilipino Mythical Creatures',
+                  fontSize: 18,
+                  color: Colors.white),
+              const SizedBox(
+                height: 80,
               ),
               TextBold(
                   text: 'Filipino\nMythical\nCreatures',
@@ -32,7 +39,7 @@ class LandingScreen extends StatelessWidget {
                   text: 'The app that contains filipino mythical creatures',
                   fontSize: 20,
                   color: Colors.white),
-              Expanded(
+              const Expanded(
                 child: SizedBox(
                   height: 200,
                 ),
@@ -44,7 +51,7 @@ class LandingScreen extends StatelessWidget {
                             builder: (context) => HomeScreen()));
                       }),
                       text: 'Get Started')),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
             ],
