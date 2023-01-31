@@ -20,8 +20,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   @override
   void initState() {
     super.initState();
+
     _controller = VideoPlayerController.asset(box.read('data')['video'])
       ..initialize().then((_) {
+        _controller.setVolume(1);
         setState(() {});
       });
   }
