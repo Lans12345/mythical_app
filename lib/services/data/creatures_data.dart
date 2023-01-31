@@ -1,5 +1,6 @@
 var creaturesData = [
   {
+    'video': 'assets/files/Tiyanak.mp4',
     'image': 'assets/files/tiyanak.png',
     'name': 'Tiyanak',
     'description':
@@ -7,6 +8,7 @@ var creaturesData = [
     'weakness': 'Tiyanak',
   },
   {
+    'video': 'assets/files/Wakwak.mp4',
     'image': 'assets/files/wakwak.png',
     'name': 'Wakwak',
     'description':
@@ -14,6 +16,7 @@ var creaturesData = [
     'weakness': 'Fire, guns, garlic, sunlight',
   },
   {
+    'video': 'assets/files/tamawo.mp4',
     'image': 'assets/files/tamawo.png',
     'name': 'Tamawo',
     'description':
@@ -21,6 +24,7 @@ var creaturesData = [
     'weakness': 'Garlic, salt, rosary',
   },
   {
+    'video': 'assets/files/Balbal.mp4',
     'image': 'assets/files/balbal.png',
     'name': 'Balbal',
     'description':
@@ -29,6 +33,7 @@ var creaturesData = [
         'Garlic, salt and the rosary, killed only by a stake in the heart',
   },
   {
+    'video': 'assets/files/Mangkukulam.mp4',
     'image': 'assets/files/mangkukulam.png',
     'name': 'Mangkukulam ',
     'description':
@@ -37,6 +42,7 @@ var creaturesData = [
         'The curses of a mangkukulam will be stopped if he/she is found and bribed. It can also be stopped or countered by an albularyo.',
   },
   {
+    'video': 'assets/files/Siyokoy.mp4',
     'image': 'assets/files/siyokoy.png',
     'name': 'Siyokoy',
     'description':
@@ -44,6 +50,7 @@ var creaturesData = [
     'weakness': 'Fire',
   },
   {
+    'video': 'assets/files/Bakunawa.mp4',
     'image': 'assets/files/bakunawa.png',
     'name': 'Bakunawa',
     'description':
@@ -51,6 +58,7 @@ var creaturesData = [
     'weakness': 'Excessive Loud noises',
   },
   {
+    'video': 'assets/files/Manananggal.mp4',
     'image': 'assets/files/manananggal.png',
     'name': 'Manananggal',
     'description':
@@ -59,6 +67,7 @@ var creaturesData = [
         'Sunlight is deadly to the Manananggal when she is in her monstrous form. Should her two halves still be separated with the coming of dawn, she will be destroyed. According to legend, to destroy the Manananggal, one should search for the lower torso that she leaves behind during her nightly hunts.',
   },
   {
+    'video': 'assets/files/WHITELADY.mp4',
     'image': 'assets/files/whiteLady.png',
     'name': 'White lady',
     'description':
@@ -66,6 +75,7 @@ var creaturesData = [
     'weakness': 'Cold pure iron, salt, exorcism',
   },
   {
+    'video': 'assets/files/TIKBALANG.mp4',
     'image': 'assets/files/tikbalang.png',
     'name': 'Tikbalang',
     'description':
@@ -73,6 +83,7 @@ var creaturesData = [
     'weakness': 'Guns, rosary, wear tshirt inside out to avoid getting lost',
   },
   {
+    'video': 'assets/files/KAPRE.mp4',
     'image': 'assets/files/Kapre.png',
     'name': 'Kapre',
     'description':
@@ -81,13 +92,15 @@ var creaturesData = [
         'Wear tshirt inside out to not get played, barter, garlic and salt',
   },
   {
+    'video': 'assets/files/DUWENDE.mp4',
     'image': 'assets/files/duwende.png',
-    'name': 'Dewende',
+    'name': 'Duwende',
     'description':
         'The duwende is a playful hobgoblin who shows himself to children, while the nuno is a goblin easily angered that will do harm to those who damage or disturb his mound, and will seek retribution, for example by causing the foot of someone who kicked his mound to become swollen.',
     'weakness': 'Salt, garlic, rosary, loud noises',
   },
   {
+    'video': 'assets/files/BATIBAT.mp4',
     'image': 'assets/files/batibat.png',
     'name': 'Batibat',
     'description':
@@ -95,6 +108,7 @@ var creaturesData = [
     'weakness': 'Prayers',
   },
   {
+    'video': 'assets/files/Bungisngis.mp4',
     'image': 'assets/files/bungisngis.png',
     'name': 'Bungisngis',
     'description':
@@ -102,6 +116,7 @@ var creaturesData = [
     'weakness': 'Stupid and gullible, easy to be tricked or manipulated. ',
   },
   {
+    'video': 'assets/files/BAGAT.mp4',
     'image': 'assets/files/bagat.png',
     'name': 'Bagat',
     'description':
@@ -109,6 +124,7 @@ var creaturesData = [
     'weakness': 'Rosary, garlic, salt, sunlight',
   },
   {
+    'video': 'assets/files/Minokawa.mp4',
     'image': 'assets/files/minikawa.png',
     'name': 'Minokawa',
     'description':
@@ -116,6 +132,7 @@ var creaturesData = [
     'weakness': 'Undefined',
   },
   {
+    'video': 'assets/files/Sarimanok.mp4',
     'image': 'assets/files/sarimanok.png',
     'name': 'Sarimanok',
     'description':
@@ -123,6 +140,7 @@ var creaturesData = [
     'weakness': 'Undefined',
   },
   {
+    'video': 'assets/files/Naga.mp4',
     'image': 'assets/files/naga2.png',
     'name': 'Naga',
     'description':
