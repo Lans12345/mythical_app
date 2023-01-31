@@ -129,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     child: Row(
                                       children: [
                                         Image.asset(
-                                          'assets/images/sample.png',
+                                          creaturesData[index]['image']!,
                                           height: 80,
                                         ),
                                         const SizedBox(
@@ -212,7 +212,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             child: Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/images/sample.png',
+                                                  creaturesData[index]
+                                                      ['image']!,
                                                   height: 80,
                                                 ),
                                                 const SizedBox(
@@ -299,7 +300,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                             child: Row(
                                               children: [
                                                 Image.asset(
-                                                  'assets/images/sample.png',
+                                                  creaturesData[index]
+                                                      ['image']!,
                                                   height: 80,
                                                 ),
                                                 const SizedBox(
