@@ -5,7 +5,8 @@ var creaturesData = [
     'name': 'Tiyanak',
     'description':
         'The Tiyanak is a small humanoid monster in Philippine mythology which pretends to be an innocent baby before attacking humans. It disguises itself as a baby abandoned in the forest or in the field. It wails loudly to attract a passerby and when picked up it sheds its disguise like a snake shedding its old skin, revealing its true form, and kills the victim by biting and mauling.',
-    'weakness': 'Tiyanak',
+    'weakness':
+        'Loud noises such as Fireworks and gunshots, garlic and the rosary',
   },
   {
     'video': 'assets/files/Wakwak.mp4',

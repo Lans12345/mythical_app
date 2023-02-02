@@ -22,17 +22,10 @@ class LandingScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 20,
-              ),
-              TextBold(
-                  text: 'AKLAT:\nFilipino Mythical Creatures',
-                  fontSize: 18,
-                  color: Colors.white),
-              const SizedBox(
                 height: 80,
               ),
               TextBold(
-                  text: 'Filipino\nMythical\nCreatures',
+                  text: 'AKLAT :\nFilipino\nMythical\nCreatures',
                   fontSize: 48,
                   color: Colors.white),
               TextRegular(
