@@ -113,6 +113,20 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                                             color: Colors.grey),
                                       ),
                                     ),
+                                    TextRegular(
+                                        text: 'Source:',
+                                        fontSize: 14,
+                                        color: Colors.black),
+                                    Center(
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 20),
+                                        child: TextRegular(
+                                            text: 'cryptidz.fandom.com',
+                                            fontSize: 12,
+                                            color: Colors.grey),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ),
