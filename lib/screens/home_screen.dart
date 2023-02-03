@@ -212,8 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             child: Row(
                                               children: [
                                                 Image.asset(
-                                                  creaturesData[index]
-                                                      ['image']!,
+                                                  newData[index]['image']!,
                                                   height: 80,
                                                 ),
                                                 const SizedBox(
