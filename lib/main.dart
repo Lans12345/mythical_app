@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mythical_app/screens/landing_screen.dart';
 import 'package:mythical_app/screens/splash_screen.dart';
 
 void main() {

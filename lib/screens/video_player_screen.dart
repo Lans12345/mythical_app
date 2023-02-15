@@ -45,6 +45,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
           ),
           MaterialButton(
             onPressed: () {
+              _controller.dispose();
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => HomeScreen()));
             },
